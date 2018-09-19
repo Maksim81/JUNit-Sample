@@ -11,4 +11,5 @@ Next features available:
 For running tests
 
 1. Install IDE (Eclipse IDE was used, but should also work with others (e.g. IntellijIDea))
-2. 
+2. Install JUnit 4.12 + Selenium
+3. Execute the tests
