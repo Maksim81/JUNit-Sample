@@ -1,54 +1,51 @@
-import static org.junit.Assert.assertEquals;
+package ui.tests;
 import static org.junit.Assert.fail;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;		
+import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class ServiceSuite {
-	 
-	  private StringBuffer verificationErrors = new StringBuffer();
+public class BaseTestSuite {
+	
+      private WebDriver driver;
+	  private static String bookTitle;
 	  private boolean acceptNextAlert = true;
-	  private WebElement element;
-	  private WebDriver driver;
-	  private String baseUrl;
+	  private StringBuffer verificationErrors = new StringBuffer();
+	  
+	  /*
+	   * Here we declare the random values that stay constant for whole test suite
+	   */
+	  
+	  @BeforeClass 
+	  public static void setUpOnlyOnce() {
+		  Date date = new Date();		
+		  DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HHmmss");		
+		  bookTitle="Testing Journal " + sdf.format(date);
+	  }
+	  
+	  
 	  @Before
 	  public void setUp() throws Exception {
+		 
 		System.setProperty("webdriver.gecko.driver", "C:/geckodriver-v0.19.1-win64/geckodriver.exe");
 		driver = new FirefoxDriver();
-	    baseUrl = "https://www.katalon.com/";
-	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	    driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);	     
 	  }
-
-	/*
-	 * Service test to check that JUNIT works correctly	 * 
-	 */
-	@Test		
-    public void JunitAlive(){					
-        String str= "JUnit is working fine";					
-        assertEquals("JUnit is working fine",str);					
-    }	
-	
-	/*
-	 * Service test to check that site is alive	 * 
-	 */
-	@Test
-	  public void SiteAlive() throws Exception {
-	    driver.get("https://raamatukogu.herokuapp.com");
-	    WebElement Home = driver.findElement(By.xpath("/html/body/div/div/div[1]/ul/li[1]/a"));
-	    assertEquals(Home.getText(),"Home");
-	  }
-
-	  @After
+	  
+  
+	  @After	  
 	  public void tearDown() throws Exception {
 	    driver.quit();
 	    String verificationErrorString = verificationErrors.toString();
@@ -90,4 +87,25 @@ public class ServiceSuite {
 	    }
 	  }
 	
-}	
+	  /*
+	  * LBT-001 This test adds a new book with randomly generated title
+	  */
+	  @Test
+	  public void AddNewBook() throws Exception {
+		//String BookTitle = new String ("Random book title");
+		driver.get("https://raamatukogu.herokuapp.com/catalog/book/create");
+		System.out.println(bookTitle);
+	  }	  
+	  
+	  /*
+	  * LBT-002 This test verifies that new book with randomly generated title is added
+	  */
+	  @Test
+	  public void VerifyNewBookAdded() throws Exception {
+		//String BookTitle = new String ("Random book title");
+		driver.get("https://raamatukogu.herokuapp.com/catalog/book/create");
+		System.out.println(bookTitle);
+	  }	 
+
+	  	
+}		

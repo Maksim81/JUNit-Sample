@@ -1,3 +1,4 @@
+package ui.tests;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
@@ -21,6 +22,7 @@ public class ServiceSuite {
 	  private WebElement element;
 	  private WebDriver driver;
 	  private String baseUrl;
+	  
 	  @Before
 	  public void setUp() throws Exception {
 		System.setProperty("webdriver.gecko.driver", "C:/geckodriver-v0.19.1-win64/geckodriver.exe");
