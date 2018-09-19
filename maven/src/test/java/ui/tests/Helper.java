@@ -5,7 +5,10 @@ import java.util.Date;
 import java.util.Random;
 
 
-/**----This class contains separate methods to help the test process---**/
+/*
+ *----This class contains separate methods to help the test process---*
+ * It could contain some utilities e.g. for generating some random names etc.
+ * */
 
 
 public class Helper {				
