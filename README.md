@@ -11,5 +11,6 @@ Next features available:
 For running tests
 
 1. Install IDE (Eclipse IDE was used, but should also work with others (e.g. IntellijIDea))
-2. Install JUnit 4.12 + Selenium
-3. Execute the tests
+2. Verify that java installed (print in the terminal java -version or java --version)
+3. Install JUnit 4.12 + Selenium
+4. Execute the tests (Run Full Tests suite as JUnit test in the IDE)
