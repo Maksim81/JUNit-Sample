@@ -1,5 +1,4 @@
 package ui.tests;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.text.DateFormat;
@@ -93,7 +92,7 @@ public class BaseTestSuite {
 	  * LBT-001 This test adds a new book with randomly generated title
 	  */
 	  @Test
-	  public void AddNewBook() throws Exception {
+	  public void addNewBook() throws Exception {
 		//String BookTitle = new String ("Random book title");
 		driver.get("https://raamatukogu.herokuapp.com/catalog/book/create");
 		//Filling book title
@@ -121,11 +120,17 @@ public class BaseTestSuite {
 	  * LBT-002 This test verifies that new book with randomly generated title is added
 	  */
 	  @Test
-	  public void VerifyNewBookAdded() throws Exception {
-		//String BookTitle = new String ("Random book title");
-		driver.get("https://raamatukogu.herokuapp.com/catalog/book/create");
-		System.out.println(bookTitle);
-	  }	 
+	  public void verifyNewBookAdded() throws Exception {
+		driver.get("https://raamatukogu.herokuapp.com/catalog/books");
+		assertTrue(driver.findElement(By.linkText(bookTitle)).isDisplayed());
+		//System.out.println(bookTitle);
+	  }
+
+
+	private void assertTrue(boolean displayed) {
+		// TODO Auto-generated method stub
+		
+	}	 
 
 	  	
 }		
